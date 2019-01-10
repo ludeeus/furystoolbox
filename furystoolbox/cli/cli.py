@@ -1,6 +1,7 @@
 """CLI commands."""
+from asyncio import get_event_loop
+
 import click
-from googledevices.helpers import gdh_loop
 
 
 @click.group()
@@ -14,9 +15,12 @@ async def commands():
 def device_info(cmd, url):
     """Hass cmd."""
     if cmd == 'breaking':
-        from googledevices.cli.commands.hass import breaking_change
+        if not url:
+            print("Missing url.")
+            return
+        from furystoolbox.cli.hass import breaking_change
         breaking_change(url)
 
 
-LOOP = gdh_loop()
+LOOP = get_event_loop()
 CLI = click.CommandCollection(sources=[commands])
