@@ -6,5 +6,3 @@ deploy:
   user: $PYPIUSER
   password: $PYPIKEY
   skip_existing: true
-  on:
-    tags: true
