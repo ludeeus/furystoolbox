@@ -12,7 +12,7 @@ async def commands():
 @commands.command('hass')
 @click.argument('cmd', required=1)
 @click.argument('number', required=0)
-def device_info(cmd, number):
+def hass(cmd, number):
     """Hass cmd."""
     if cmd == 'breaking':
         if not number:
@@ -21,6 +21,15 @@ def device_info(cmd, number):
         from furystoolbox.cli.hass import breaking_change
         breaking_change(number)
 
+
+@commands.command('random')
+@click.argument('cmd', required=1)
+def device_info(cmd):
+    """random cmd."""
+    import random
+    if cmd == 'commit':
+        from furystoolbox.random import COMMIT
+        print(random.choice(COMMIT))
 
 LOOP = get_event_loop()
 CLI = click.CommandCollection(sources=[commands])
