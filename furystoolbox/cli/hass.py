@@ -31,7 +31,7 @@ def breaking_change(url):
                     component = component.split('(<a href="/components/')[1]
                     component = component.split('/">')[0]
                 except:
-                    component = ''
+                    component = None
                 doclink = '{}{}'.format(comp_base, component)
                 desc = str(change).split('  <li>')[1]
                 desc = desc.split('(<a ')[0]
