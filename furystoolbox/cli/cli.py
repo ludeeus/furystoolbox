@@ -11,15 +11,15 @@ async def commands():
 
 @commands.command('hass')
 @click.argument('cmd', required=1)
-@click.argument('url', required=0)
-def device_info(cmd, url):
+@click.argument('number', required=0)
+def device_info(cmd, number):
     """Hass cmd."""
     if cmd == 'breaking':
-        if not url:
-            print("Missing url.")
+        if not number:
+            print("Missing release number.")
             return
         from furystoolbox.cli.hass import breaking_change
-        breaking_change(url)
+        breaking_change(number)
 
 
 LOOP = get_event_loop()

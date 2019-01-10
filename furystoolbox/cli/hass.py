@@ -1,12 +1,32 @@
 """Hass cmd."""
 
 
-def breaking_change(url):
+def breaking_change(number):
     """Create breaking_change list for HA."""
     import json
     import requests
+    import os
+    from github import Github
+    blog_base = 'https://www.home-assistant.io/blog/'
     comp_base = 'https://www.home-assistant.io/components/'
     pull_base = 'https://github.com/home-assistant/home-assistant/pull/'
+
+    github = Github(os.environ['GHTOKEN'])
+    repo = github.get_repo('home-assistant/home-assistant.io')
+    posts = repo.get_dir_contents('source/_posts')
+    this_post = None
+    for post in posts:
+        if 'release' in post.path:
+            name = post.path.split('/')[-1].split('.')[0]
+            name = name.split('-')
+            rel_number = name[-1]
+            if rel_number == number:
+                this_post = "{}/{}/{}/{}-{}".format(name[0], name[1], name[2],
+                                                    name[3], name[-1])
+    if this_post is None:
+        print("Release for", number, "not found")
+        return
+    url = "{}{}".format(blog_base, this_post)
     url_data = requests.get(url).text.split('\n')
     raw_changes = []
     changes = {}
