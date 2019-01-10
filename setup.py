@@ -4,6 +4,11 @@ from furystoolbox import __version__
 
 with open("README.md", "r") as fh:
     LONG = fh.read()
+
+with open("requirements.txt", "r") as req:
+    REQUIRES = req.read()
+    REQUIRES = REQUIRES.split()
+
 setuptools.setup(
     name="furystoolbox",
     version=__version__,
@@ -13,6 +18,7 @@ setuptools.setup(
     long_description=LONG,
     long_description_content_type="text/markdown",
     url="https://github.com/ludeeus/furystoolbox",
+    install_requires=REQUIRES,
     packages=setuptools.find_packages(),
     classifiers=(
         "Programming Language :: Python :: 3",
