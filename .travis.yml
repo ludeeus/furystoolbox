@@ -1,0 +1,9 @@
+language: python
+python: "3.6" 
+deploy:
+  provider: pypi
+  user: $PYPIUSER
+  password: $PYPIKEY
+  skip_existing: true
+  on:
+    tags: true
