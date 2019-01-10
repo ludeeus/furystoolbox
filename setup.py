@@ -5,12 +5,9 @@ from furystoolbox import __version__
 with open("README.md", "r") as fh:
     LONG = fh.read()
 
-REQUIRES = ['setuptools==40.6.3',
-            'wheel==0.32.3',
-            'pip==18.1',
-            'click==7.0',
-            'requests==2.21.0',
-            'PyGithub==1.43.4']
+REQUIRES = ['click<7.0',
+            'requests<2.21.0',
+            'PyGithub<1.43.4']
 
 setuptools.setup(
     name="furystoolbox",
