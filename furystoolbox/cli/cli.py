@@ -29,7 +29,9 @@ def device_info(cmd):
     import random
     if cmd == 'commit':
         from furystoolbox.random import COMMIT
-        print(random.choice(COMMIT))
+        print()
+        print("      ", random.choice(COMMIT))
+        print()
 
 LOOP = get_event_loop()
 CLI = click.CommandCollection(sources=[commands])
