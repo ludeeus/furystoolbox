@@ -7,6 +7,7 @@ def breaking_change(number):
     import requests
     import os
     from github import Github
+    from furystoolbox.common import share
     blog_base = 'https://www.home-assistant.io/blog/'
     comp_base = 'https://www.home-assistant.io/components/'
     pull_base = 'https://github.com/home-assistant/home-assistant/pull/'
@@ -67,4 +68,6 @@ def breaking_change(number):
                 this['description'] = desc
                 changes['data'].append(this)
                 control.append(pull_request)
-    print(json.dumps(changes, sort_keys=True, indent=4, ensure_ascii=True))
+    data = json.dumps(changes, sort_keys=True, indent=4, ensure_ascii=True)
+    print(data)
+    share(data)
