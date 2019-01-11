@@ -71,4 +71,4 @@ def breaking_change(number):
     data = json.dumps(changes, sort_keys=True, indent=4, ensure_ascii=True)
     print(data)
     share(data)
-    return data
+    return changes
