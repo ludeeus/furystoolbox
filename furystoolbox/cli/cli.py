@@ -19,7 +19,7 @@ def hass(cmd, number):
             print("Missing release number.")
             return
         from furystoolbox.cli.hass import breaking_change
-        breaking_change(number)
+        breaking_change(number, True)
 
 
 @commands.command('random')

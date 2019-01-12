@@ -1,7 +1,7 @@
 """Hass cmd."""
 
 
-def breaking_change(number):
+def breaking_change(number, cli=False):
     """Create breaking_change list for HA."""
     import json
     import requests
@@ -72,7 +72,8 @@ def breaking_change(number):
                 this['description'] = desc
                 changes['data'].append(this)
                 control.append(pull)
-    data = json.dumps(changes, sort_keys=True, indent=4, ensure_ascii=True)
-    print(data)
-    share(data)
+    if cli:
+        data = json.dumps(changes, sort_keys=True, indent=4, ensure_ascii=True)
+        print(data)
+        share(data)
     return changes
