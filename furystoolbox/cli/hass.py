@@ -26,7 +26,6 @@ def breaking_change(number, cli=False):
         return
     url = this_post
     url_data = requests.get(url).text.split('\n')
-    print(url)
     raw_changes = []
     changes = {}
     changes['version'] = "0.{}.x".format(url.split('.markdown')[0][-2:])
@@ -36,7 +35,6 @@ def breaking_change(number, cli=False):
         if "(breaking change)" in line:
             raw_changes.append(line)
     for change in raw_changes:
-        print(change)
         if change[0:3] == '<p>':
             pass
         else:
