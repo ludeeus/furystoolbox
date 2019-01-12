@@ -41,11 +41,15 @@ def breaking_change(number):
             pass
         else:
             this = {}
-            pull_request = str(change)
-            pull = pull_request.split('home-assistant/home-assistant/pull/')[1]
-            pull_request = pull.split('"')[0]
-            if pull_request not in control:
-                prlink = '{}{}'.format(pull_base, pull_request)
+            try:
+                pull = str(change)
+                pull = pull.split('home-assistant/home-assistant/pull/')[1]
+                pull = pull.split('"')[0]
+            except:
+                pull = None
+                pass
+            if pull not in control or pull is not None:
+                prlink = '{}{}'.format(pull_base, pull)
                 try:
                     split = '<a href="/home-assistant/home-assistant.io/blob/'
                     split += 'current/components/'
@@ -62,13 +66,13 @@ def breaking_change(number):
                 desc = desc.replace('\u2019', '`')
                 desc = desc.replace('\u201c', '')
                 desc = desc.replace('\u201d', '')
-                this['pull_request'] = pull_request
+                this['pull_request'] = pull
                 this['prlink'] = prlink
                 this['component'] = component
                 this['doclink'] = doclink
                 this['description'] = desc
                 changes['data'].append(this)
-                control.append(pull_request)
+                control.append(pull)
     data = json.dumps(changes, sort_keys=True, indent=4, ensure_ascii=True)
     print(data)
     share(data)
