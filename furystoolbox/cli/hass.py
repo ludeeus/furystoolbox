@@ -47,7 +47,6 @@ def breaking_change(number):
                 pull = pull.split('"')[0]
             except:
                 pull = None
-                pass
             if pull not in control or pull is not None:
                 prlink = '{}{}'.format(pull_base, pull)
                 try:
